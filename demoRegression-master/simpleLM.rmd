@@ -1,8 +1,10 @@
 ---
 title: "simpleRegress"
-author: "put your name here"
-date: "Fall 2020"
-output: html_document
+author: "Stephanny Marthans"
+date: "Spring 2021"
+output:
+  html_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 bears <- read.csv(file="BEARS.csv",header = TRUE)
 ```
-
+# NECK
 ## Model LENGTH ~ NECK  this is an example  
 
 ```{r}
@@ -24,13 +26,31 @@ abline(simp)
 summary.lm(simp)
 ```
 
+# WEIGHT
+## Model LENGTH ~ WEIGHT  
+
+```{r}
+simpHW <- lm(LENGTH~WEIGHT,data=bears)
+plot(LENGTH~WEIGHT,data=bears)
+abline(simpHW)
+summary.lm(simpHW)
+```
+
+# HEADLEN
+## Model LENGTH ~ HEADLEN
+```{r}
+simpHW <- lm(LENGTH~HEADLEN,data=bears)
+plot(LENGTH~HEADLEN,data=bears)
+abline(simpHW)
+summary.lm(simpHW)
+```
+
 ## now predict the length of a bear who has a neck of 17, 22 and 26
 
 
 ```{r}
-new <- data.frame(NECK=c(17,22,26))
-predict(simp,new)
-predict(simp,new,se.fit=TRUE)
+new <- data.frame(HEADLEN=c(17,13,9))
+predict(simpHW,new,se.fit=TRUE)
 ```
 ## Surely there is another variable that can better predict LENGTH than NECK. Find one and compare its performance to that of neck by it value of Adjusted-Rsquared (bigger is better).
 
